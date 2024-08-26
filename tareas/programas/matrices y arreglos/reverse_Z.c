@@ -32,27 +32,18 @@ int main(int argc, char const *argv[])
 
 	int aux_j = 2;
 
-	printf("[%0.2d][%0.2d] = %0.2d\n\n", n_filas - 1, n_columnas -1, oso[n_filas - 1][n_columnas -1]);
+	printf(" [%0.2d][%0.2d] = %0.2d\n", n_filas - 1, n_columnas -1, oso[n_filas - 1][n_columnas -1]);
 	for ( i = n_filas - 1; i >= 0;--i)
 	{
 		for( j = aux_j; j >= 0;--j)
 		{
-			if( (i + j)%3 == 0 )
-			//if( (i + j)/3 == 1)
+			printf(" [%0.2d][%0.2d] = %0.2d\n", i, j, oso[i][j]);
+			if( (i + j) == 3 && i != 0)
 			{
-				printf("* [%0.2d][%0.2d] = %0.2d\n\n", i, j, oso[i][j]);
 				++j;
 				aux_j = j;
-				if (i != 0)
-				{
-					break;
-				}
+				break;
 			}
-			else
-			{
-				printf("- [%0.2d][%0.2d] = %0.2d\n\n", i, j, oso[i][j]);
-			}
-
 		}
 	}
 
