@@ -33,38 +33,14 @@ int main(int argc, char const *argv[])
 		printf(" Direccion: %p \nContenido: %p\nValor: %d \n",(arr + i) , *(arr + i), **(arr + i));
 	}
 
-	return 0;
-
-	int **matrix = (int **) malloc(rows * sizeof(int *));
-	/*
-	printf(" %d ", matrix[0]);
-	printf(" %d ", **matrix);
-	printf(" %p ", *matrix);
-	printf(" %p ", matrix);
-	*/
-
-	for (int i = 0; i < rows; i++)
-	{
-		*(matrix + i) = (int *) malloc(columns * sizeof(int));
-	}
-
-
-	for (int i = 0, k = 1; i < rows; ++i)
-	{
-		for (int j = 0; j < columns; ++i)
-		{
-			printf(" %c ",argv[k]);
-			//**((matrix + i) + j) = atoi(argv[k]);
-			++k;
-		}
-	}
-
-
-	// Liberar la memoria
-    for (int i = 0; i < rows; i++) {
-        free(matrix[i]);  // Liberar cada fila
+	// Liberar la memoria, CONFIAR EN QUE SE LIBERA LA MEMORIA
+    for (int i = 0; i < rows; i++)
+    {
+        //free(arr[i]);  // Liberar cada fila
+        free(*(arr + i));
     }
-    free(matrix);  // Liberar el arreglo de punteros
+    free(arr);  // Liberar el arreglo de punteros
+    printf("Liberamos memoria!");
 
 	return 0;
 }
