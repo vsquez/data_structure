@@ -3,21 +3,37 @@
 
 int main(int argc, char const *argv[])
 {
-	int rows = 2;
+	int rows = 5;
 	int columns = 5;
 
+	// Declarar un arreglo de punteros a enteros
 	int* arr[rows];
 
+	// Crear una matriz dinamica
 	for (int i = 0; i < rows; ++i)
 	{
+		//arr[i] = (int*)malloc(sizeof(int));
 		*(arr + i) = (int*)malloc(sizeof(int));
-		**(arr + i) = i;
+		if (arr[i] == NULL)
+		{
+			printf("Error");
+			return 1;
+		}
+		// Notacion de subindices
+		//*arr[i] = atoi(argv[i + 1]);
+
+		// Notacion de punteros
+		// Desreferencia una segunda vez para obtener el contenido del contenido en el arreglo de punteros
+		**(arr + i) = atoi(*(argv + (i + 1)));
 	}
 
+	// Desplegar informacion
 	for (int i = 0; i < rows; ++i)
 	{
-		printf(" %d ", **(arr + i));
+		printf(" Direccion: %p \nContenido: %p\nValor: %d \n",(arr + i) , *(arr + i), **(arr + i));
 	}
+
+	return 0;
 
 	int **matrix = (int **) malloc(rows * sizeof(int *));
 	/*
@@ -32,12 +48,6 @@ int main(int argc, char const *argv[])
 		*(matrix + i) = (int *) malloc(columns * sizeof(int));
 	}
 
-	for (int i = 1; i < argc; ++i)
-	{
-		printf("%c",argv[i]);
-	}
-
-	return 0;
 
 	for (int i = 0, k = 1; i < rows; ++i)
 	{
@@ -49,17 +59,6 @@ int main(int argc, char const *argv[])
 		}
 	}
 
-	/*
-	printf("\n\tMatrix: \n");
-	for (int i = 0; i < rows; ++i)
-	{
-		for (int j = 0; j < columns; ++j)
-		{
-			printf(" %d ", matrix[i][j] );
-		}
-		printf("\n");
-	}
-	*/
 
 	// Liberar la memoria
     for (int i = 0; i < rows; i++) {
