@@ -9,6 +9,15 @@ struct Persona {
     int calificacion;
 };
 
+// Funcion para validar entrada de usuario (INT)
+int esValido(int dato, int min, int max)
+{
+    if(dato > min && dato <= max)
+        return 0;
+    else
+        return 1;
+}
+
 int main() {
     struct Persona *personas = NULL;  // Puntero inicializado a NULL
     int n = 0;  // Contador de estructuras asignadas
@@ -30,10 +39,18 @@ int main() {
         // Capturar los datos para la nueva Persona
         printf("Ingrese el nombre del alumno %d: ", n);
         scanf("%s", personas[n-1].nombre);
-        printf("Ingrese la edad de %s: ", personas[n-1].nombre);
-        scanf("%d", &personas[n-1].edad);
-        printf("Ingrese la calificacion de %s: ", personas[n-1].nombre);
-        scanf("%d", &personas[n-1].calificacion);
+        do
+        {
+            printf("Ingrese la edad de %s: ", personas[n-1].nombre);
+            scanf("%d", &personas[n-1].edad);
+        }while( (esValido(personas[n-1].edad,0,200) == 1) );
+
+        do
+        {
+            printf("Ingrese la calificacion de %s: ", personas[n-1].nombre);
+            scanf("%d", &personas[n-1].calificacion);
+        }while( (esValido(personas[n-1].calificacion,0,10) == 1) );
+
 
         // Preguntar si desea continuar
         printf("¿Desea ingresar otra persona? (s/n): ");
