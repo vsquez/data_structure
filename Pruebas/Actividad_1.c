@@ -18,12 +18,23 @@ int esValido(int dato, int min, int max)
         return 1;
 }
 
+float calcular_promedio(int sumatoria, int n)
+{
+    return sumatoria/n;
+}
+
 int main() {
     struct Persona *personas = NULL;  // Puntero inicializado a NULL
+    float acum_edad = 0, acum_calif = 0;
     int n = 0;  // Contador de estructuras asignadas
     char continuar;
 
-    do {
+    // Preguntar si desea continuar
+    printf("¿Desea ingresar otra persona? (s/n): ");
+    scanf(" %c", &continuar);
+
+    while (continuar == 's' || continuar == 'S')
+    {
         // Incrementar el contador
         n++;
 
@@ -51,12 +62,14 @@ int main() {
             scanf("%d", &personas[n-1].calificacion);
         }while( (esValido(personas[n-1].calificacion,0,10) == 1) );
 
+        acum_edad += personas[n-1].edad;
+        acum_calif += personas[n-1].calificacion;
 
         // Preguntar si desea continuar
         printf("¿Desea ingresar otra persona? (s/n): ");
         scanf(" %c", &continuar);
 
-    } while (continuar == 's' || continuar == 'S');
+    }
 
     // Mostrar los datos ingresados
     printf("\nDatos ingresados:\n");
@@ -64,6 +77,10 @@ int main() {
         printf("Nombre: %s \nEdad: %d \nCalificacion: %d \n",
                personas[i].nombre, personas[i].edad, personas[i].calificacion);
     }
+
+    // Mostrar promedios
+    printf("\n\nPromedio de edad: %2.2f\n",calcular_promedio(acum_edad,n));
+    printf("Calificacion del grupo: %2.2f\n",calcular_promedio(acum_calif,n));
 
     // Liberar la memoria asignada
     free(personas);
