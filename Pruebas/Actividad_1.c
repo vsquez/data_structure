@@ -54,12 +54,14 @@ int main() {
         {
             printf("Ingrese la edad de %s: ", personas[n-1].nombre);
             scanf("%d", &personas[n-1].edad);
+            getchar();
         }while( (esValido(personas[n-1].edad,0,200) == 1) );
 
         do
         {
             printf("Ingrese la calificacion de %s: ", personas[n-1].nombre);
             scanf("%d", &personas[n-1].calificacion);
+            getchar();
         }while( (esValido(personas[n-1].calificacion,0,10) == 1) );
 
         acum_edad += personas[n-1].edad;
